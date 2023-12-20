@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlserver"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -33,6 +33,7 @@ model Session {
 
 model Key {
   id      String @id @unique
+  hashed_password String?
   user_id String
   user    User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
